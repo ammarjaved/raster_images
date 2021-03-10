@@ -1,0 +1,16 @@
+.container{
+    width: 100%;
+    max-width: 100%;
+}
+
+nav{
+    background-color: purple;!important;
+    height: 10vh;
+}
+#map{ height: 80vh; }
+
+.leftside{
+   height: 80vh!important;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
