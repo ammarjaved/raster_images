@@ -4,20 +4,20 @@
 }
 
 nav{
-    background-color: purple !important;
+    background-color: #008140 !important;
     height: 70px;
 }
 .tocmap{
     margin: 0 0 !important;
-    margin-top: 3px !important;
-    height: 30px !important;
+    /*margin-top: 3px !important;*/
+    /*height: 30px !important;*/
 }
 .headingp{
     /* font-size: 25px; */
     margin: 0 0 !important;
     padding: 0 0 !important;
     text-align:center;
-    color: purple !important;
+    color: white !important;
 
 }
 .sidemap{
@@ -35,14 +35,16 @@ nav{
    /* height: 95vh!important; */
     overflow-y: auto;
     overflow-x: hidden;
-    padding-left: 3px!important;
+    padding-left: px!important;
     padding-right: 3px!important;
 }
 .tabs{
     padding-left: 0px !important;
     padding-right: 0px!important;
-    background-color: purple !important;
-    color: teal;
+    background-color: #008140 !important;
+}
+.tabs .tab a{
+    color: white;
 }
 
 
