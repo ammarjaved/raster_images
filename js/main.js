@@ -1,3 +1,6 @@
+var theMarker = {};
+
+
 var map = L.map('map',{
     center: [31.5204, 74.3587],
     zoom: 10
@@ -6,6 +9,42 @@ var map = L.map('map',{
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
+
+
+
+function query_by_nid_new(layer_id,search_perm){
+
+    if (layer_id== 0) {
+        var name = "gid ='" + parseInt(search_perm) + "'";
+    }else if(layer_id== 1){
+        var name = "gid ='" + search_perm + "'";
+    }
+    else if(layer_id== 2){
+        var name = "gid ='" + search_perm + "'";
+    }
+    else if(layer_id== 3){
+        var name = "gid ='" + search_perm + "'";
+    }
+
+    L.esri.query({
+        url: "http://202.166.168.183:6080/arcgis/rest/services/Punjab/PB_space_tech_raster_dashboard_db73_v_12032021/MapServer/"+layer_id
+
+    }).where(name).run(function(error, result){
+        // draw result on the map
+        if(typeof glayer != 'undefined'){
+            glayer.clearLayers();
+        };
+
+        glayer = L.geoJson(result).addTo(map);
+
+
+
+        // fit map to boundry
+        map.fitBounds(glayer.getBounds());
+
+    });
+
+};
 
 
     var instance = M.Tabs.init(document.getElementsByClassName("tabs")[0], '');

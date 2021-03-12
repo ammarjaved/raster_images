@@ -84,8 +84,8 @@ if(isset($_SESSION['logedin'])){
 						
 					</div>
 					<div style="margin-top: 5px;">
-						<span style="color: white">Not Registered ? </span>
-							<a class="cc" href="signup.php">Create an Account </a>
+						<!-- <span style="color: white">Not Registered ? </span>
+							<a class="cc" href="signup.php">Create an Account </a> -->
 					
 					</div>
 				
