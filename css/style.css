@@ -1,17 +1,19 @@
-.container{
-    width: 100%;
-    max-width: 100%;
-}
 
+.container {
+    width: 100%;
+    max-width:initial;
+  }
+  .container > .row {
+    margin: 0;
+  }
+  .container > .row > .col {
+    padding: 0;
+  }
 nav{
     background-color: #008140 !important;
     /* height: 70px; */
 }
-.tocmap{
-    margin: 0 0 !important;
-    /*margin-top: 3px !important;*/
-    /*height: 30px !important;*/
-}
+
 hr.hr1{
     
         border: none;
@@ -24,11 +26,7 @@ hr.hr1{
     
 }
 
-.tabsdiv{
 
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-}
 .headingp{
     /* font-size: 25px; */
     margin: 0 0 !important;
@@ -37,38 +35,30 @@ hr.hr1{
     color: white !important;
 
 }
-.sidemap{
-    /* margin: 0 0 !important; */
-}
+
 #map{ 
-    height: calc(100vh - 90px);
+    height: calc(100vh - 66px);
  }
-.mapdiv{
-    padding: 0 0 !important;
-    margin: 0 0 !important;
-}
+
 
 .leftside{
     height: calc(100vh - 70px);
     overflow-y: auto;
     overflow-x: hidden;
-    /* padding-left: px!important;
-    padding-right: 3px!important; */
+
 }
 .tabs{
-    padding-left: 0px !important;
-    padding-right: 0px!important;
+
     background-color: #008140 !important;
 }
 .tabs .tab a{
     color: white;
-    padding: 0 0 !important;
+    padding: 0 !important;
     font-size: none !important;
 }
-.tab{
-    padding-left: 0px !important;
-    padding-right: 0px!important;
-    
+.tabsdata{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
 }
 
 

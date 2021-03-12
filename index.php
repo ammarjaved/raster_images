@@ -24,7 +24,7 @@ else {
 
 </head>
 <body>
-<!-- <div class="container"> -->
+<div class="container">
     <nav>
         <div class="nav-wrapper">
             
@@ -51,96 +51,99 @@ else {
                     <li class="tab col s3"><a href="#test4">Reasult</a></li>
                   </ul>
                 </div>
-                <div id="test1" class="col s12">Toc</div>
+                <div class="tabsdata">
+                    <div id="test1" class="col s12">Toc</div>
 
-                <div id="test2" class="col s12">
-                    <div class="row">
-                        <form >
-                            
-                            <div class="input-field col s12" >
-                                <select id="division">
-                                <option value="" disabled selected>Division</option>
-                                </select>
+                    <div id="test2" class="col s12">
+                        <div class="row">
+                            <form >
+                                
+                                <div class="input-field col s12" >
+                                    <select id="division">
+                                    <option value="" disabled selected>Division</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s12">
+                                    <select id="district">
+                                    <option value="" disabled selected>District</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s12">
+                                    <select id="tehsil">
+                                    <option value="" disabled selected>Tehsil</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s12">
+                                    <select id="city">
+                                    <option value="" disabled selected>City</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>                        
+                    </div>
+                    
+                    <div id="test3" class="col s12">Test 3</div>
+                    
+                    <div id="test4" class="col s12">
+                        <div style="padding-left: 0px;" class="card col s12">
+                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
+                            <div class="container" style="float:right;width:45%">
+                                <b>Name: </b><a href="#">Lahore image</a>
+                                <p><b>Description:  </b>minare pakistan image</p>
                             </div>
-                            <div class="input-field col s12">
-                                <select id="district">
-                                <option value="" disabled selected>District</option>
-                                </select>
+                        </div>
+                        <div style="padding-left: 0px;" class="card col s12">
+                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
+                            <div class="container" style="float:right;width:45%">
+                                <b>Name: </b><a href="#">Lahore image</a>
+                                <p><b>Description:  </b>minare pakistan image</p>
                             </div>
-                            <div class="input-field col s12">
-                                <select id="tehsil">
-                                <option value="" disabled selected>Tehsil</option>
-                                </select>
+                        </div>
+                        <div style="padding-left: 0px;" class="card col s12">
+                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
+                            <div class="container" style="float:right;width:45%">
+                                <b>Name: </b><a href="#">Lahore image</a>
+                                <p><b>Description:  </b>minare pakistan image</p>
                             </div>
-                            <div class="input-field col s12">
-                                <select id="city">
-                                <option value="" disabled selected>City</option>
-                                </select>
+                        </div>
+                        <div style="padding-left: 0px;" class="card col s12">
+                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
+                            <div class="container" style="float:right;width:45%">
+                                <b>Name: </b><a href="#">Lahore image</a>
+                                <p><b>Description:  </b>minare pakistan image</p>
                             </div>
-                        </form>
-                    </div>                        
+                        </div>
+                        <div style="padding-left: 0px;" class="card col s12">
+                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
+                            <div class="container" style="float:right;width:45%">
+                                <b>Name: </b><a href="#">Lahore image</a>
+                                <p><b>Description:  </b>minare pakistan image</p>
+                            </div>
+                        </div>
+                        <div style="padding-left: 0px;" class="card col s12">
+                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
+                            <div class="container" style="float:right;width:45%">
+                                <b>Name: </b><a href="#">Lahore image</a>
+                                <p><b>Description:  </b>minare pakistan image</p>
+                            </div>
+                        </div>
+                        <div style="padding-left: 0px;" class="card col s12">
+                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
+                            <div class="container" style="float:right;width:45%">
+                                <b>Name: </b><a href="#">Lahore image</a>
+                                <p><b>Description:  </b>minare pakistan image</p>
+                            </div>
+                        </div>
+                        <div style="padding-left: 0px;" class="card col s12">
+                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
+                            <div class="container" style="float:right;width:45%">
+                                <b>Name: </b><a href="#">Lahore image</a>
+                                <p><b>Description:  </b>minare pakistan image</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div id="test3" class="col s12">Test 3</div>
-                
-                <div id="test4" class="col s12">
-                    <div style="padding-left: 0px;" class="card col s12">
-                        <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                        <div class="container" style="float:right;width:45%">
-                            <b>Name: </b><a href="#">Lahore image</a>
-                            <p><b>Description:  </b>minare pakistan image</p>
-                        </div>
-                    </div>
-                    <div style="padding-left: 0px;" class="card col s12">
-                        <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                        <div class="container" style="float:right;width:45%">
-                            <b>Name: </b><a href="#">Lahore image</a>
-                            <p><b>Description:  </b>minare pakistan image</p>
-                        </div>
-                    </div>
-                    <div style="padding-left: 0px;" class="card col s12">
-                        <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                        <div class="container" style="float:right;width:45%">
-                            <b>Name: </b><a href="#">Lahore image</a>
-                            <p><b>Description:  </b>minare pakistan image</p>
-                        </div>
-                    </div>
-                    <div style="padding-left: 0px;" class="card col s12">
-                        <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                        <div class="container" style="float:right;width:45%">
-                            <b>Name: </b><a href="#">Lahore image</a>
-                            <p><b>Description:  </b>minare pakistan image</p>
-                        </div>
-                    </div>
-                    <div style="padding-left: 0px;" class="card col s12">
-                        <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                        <div class="container" style="float:right;width:45%">
-                            <b>Name: </b><a href="#">Lahore image</a>
-                            <p><b>Description:  </b>minare pakistan image</p>
-                        </div>
-                    </div>
-                    <div style="padding-left: 0px;" class="card col s12">
-                        <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                        <div class="container" style="float:right;width:45%">
-                            <b>Name: </b><a href="#">Lahore image</a>
-                            <p><b>Description:  </b>minare pakistan image</p>
-                        </div>
-                    </div>
-                    <div style="padding-left: 0px;" class="card col s12">
-                        <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                        <div class="container" style="float:right;width:45%">
-                            <b>Name: </b><a href="#">Lahore image</a>
-                            <p><b>Description:  </b>minare pakistan image</p>
-                        </div>
-                    </div>
-                    <div style="padding-left: 0px;" class="card col s12">
-                        <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                        <div class="container" style="float:right;width:45%">
-                            <b>Name: </b><a href="#">Lahore image</a>
-                            <p><b>Description:  </b>minare pakistan image</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -151,7 +154,7 @@ else {
 
 
     </div>
-<!-- </div> -->
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="js/main.js"></script>

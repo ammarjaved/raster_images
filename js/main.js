@@ -89,9 +89,9 @@ $(document).ready(function(){
     //     };
     // }
 });
+
 $('#division').on('change', function() {
     var dvid= this.value; 
-
     
     $.ajax({
         url: "services/load_district.php?dvid="+dvid,
@@ -111,7 +111,6 @@ $('#division').on('change', function() {
 });
 $('#district').on('change', function() {
     var did= this.value; 
-
     
     $.ajax({
         url: "services/load_tehsil.php?did="+did,
@@ -131,7 +130,6 @@ $('#district').on('change', function() {
 });
 $('#tehsil').on('change', function() {
     var tid= this.value; 
-
     
     $.ajax({
         url: "services/load_city.php?tid="+tid,
