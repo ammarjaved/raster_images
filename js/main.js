@@ -1,9 +1,12 @@
 var theMarker = {};
-
+var divi;
+var dist;
+var teh;
+var city;
 
 var map = L.map('map',{
     center: [31.5204, 74.3587],
-    zoom: 10
+    zoom: 7
 });
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -11,7 +14,50 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
+function addRemoveLayer(name){
 
+    if(name=='divi'){
+            var ckb = $("#divi").is(':checked');
+            if(ckb==true){
+                map.addLayer(divi)
+            }else{
+               
+                 map.removeLayer(divi)
+            }
+        }
+
+    if(name=='dist'){
+        var ckb = $("#dist").is(':checked');
+        if(ckb==true){
+           
+            map.addLayer(dist)
+        }else{
+             map.removeLayer(dist)
+        }
+    }
+    if(name=='teh'){
+        var ckb = $("#teh").is(':checked');
+       if(ckb==true){
+        map.addLayer(teh)
+           
+        }else{
+             map.removeLayer(teh)
+        }
+    }
+
+     if(name=='city'){
+        var ckb = $("#city").is(':checked');
+        if(ckb==true){
+           
+            map.addLayer(city)
+        }else{
+             map.removeLayer(city)
+        }
+    }
+
+     
+
+}
 function query_by_nid_new(layer_id,search_perm){
 
     if (layer_id== 0) {
@@ -59,6 +105,33 @@ function query_by_nid_new(layer_id,search_perm){
 $(document).ready(function(){
     // $('.tabs').tabs();
     $('select').formSelect();
+
+    var url='http://202.166.168.183:6080/arcgis/rest/services/Punjab/PB_space_tech_raster_dashboard_db73_v_12032021/MapServer';
+
+        divi=L.esri.dynamicMapLayer({
+                url: url,
+                opacity: 0.7,
+                layers: [0]
+                });
+        divi.addTo(map);
+        dist=L.esri.dynamicMapLayer({
+            url: url,
+            opacity: 0.7,
+            layers: [1]
+            });
+        dist.addTo(map);
+        teh=L.esri.dynamicMapLayer({
+                url: url,
+                opacity: 0.7,
+                layers: [2]
+                });
+        teh.addTo(map);
+        city=L.esri.dynamicMapLayer({
+            url: url,
+            opacity: 0.7,
+            layers: [3]
+            });
+        city.addTo(map);
 
 
     $.ajax({

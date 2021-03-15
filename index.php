@@ -54,7 +54,35 @@ else {
                   </ul>
                 </div>
                 <div class="tabsdata">
-                    <div id="toc" class="col s12">Toc</div>
+                    <div id="toc" class="col s12">
+                        <form action="#">
+                          
+                            <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" checked="checked" onclick="addRemoveLayer('divi')" id="divi" />
+                                <span>Division</span>
+                            </label>
+                            </p>
+                            <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" checked="checked" onclick="addRemoveLayer('dist')" id="dist" />
+                                <span>District</span>
+                            </label>
+                            </p>
+                            <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" checked="checked" onclick="addRemoveLayer('teh')" id="teh" />
+                                <span>Tehsil</span>
+                            </label>
+                            </p>
+                            <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" checked="checked" onclick="addRemoveLayer('city')" id="city" />
+                                <span>City</span>
+                            </label>
+                            </p>
+                        </form>
+                    </div>
 
                     <div id="navi" class="col s12">
                         <div class="row">
