@@ -1,11 +1,23 @@
 var theMarker = {};
+var myLayers=[];
 var divi;
 var dist;
 var teh;
 var city;
 
+
+    // ...........sidebar Tabs..........
+    var instance = M.Tabs.init(document.getElementsByClassName("tabs")[0], '');
+        
+    // var tabs = document.querySelectorAll('.tabs')
+    // for (var i = 0; i < tabs.length; i++){
+    //     M.Tabs.init(tabs[i]);
+    // }
+
+
+// ...........map section..........
 var map = L.map('map',{
-    center: [31.5204, 74.3587],
+    center: [30.7659, 72.4376],
     zoom: 7
 });
 
@@ -14,9 +26,47 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-function addRemoveLayer(name){
 
-    if(name=='divi'){
+    // ..........leaflet fullscreen..........
+    map.addControl(new L.Control.Fullscreen(  
+        {position:"topright"}
+    ));
+
+    // ..........leaflet draw..........
+    drawnItems = L.featureGroup().addTo(map);
+    
+    map.addControl(new L.Control.Draw({
+        edit: {
+            featureGroup: drawnItems,
+            poly: {
+                allowIntersection: false
+            }
+        },
+        draw: {
+            polygon: {
+                allowIntersection: false,
+                showArea: true
+            },
+            polyline:false,
+            marker: false,
+            squire: true,
+            circlemarker: false,
+            rectangle: false,
+            circle: false,
+        }
+    }));
+
+    map.on(L.Draw.Event.CREATED, function (event) {
+        var layer = event.layer;
+
+        drawnItems.addLayer(layer);
+    });
+
+
+// ...........TOC btns work..........
+function addRemoveLayer(perm){
+
+    if(perm=='divi'){
             var ckb = $("#divi").is(':checked');
             if(ckb==true){
                 map.addLayer(divi)
@@ -26,7 +76,7 @@ function addRemoveLayer(name){
             }
         }
 
-    if(name=='dist'){
+    if(perm=='dist'){
         var ckb = $("#dist").is(':checked');
         if(ckb==true){
            
@@ -35,7 +85,7 @@ function addRemoveLayer(name){
              map.removeLayer(dist)
         }
     }
-    if(name=='teh'){
+    if(perm=='teh'){
         var ckb = $("#teh").is(':checked');
        if(ckb==true){
         map.addLayer(teh)
@@ -45,7 +95,7 @@ function addRemoveLayer(name){
         }
     }
 
-     if(name=='city'){
+     if(perm=='city'){
         var ckb = $("#city").is(':checked');
         if(ckb==true){
            
@@ -58,54 +108,23 @@ function addRemoveLayer(name){
      
 
 }
-function query_by_nid_new(layer_id,search_perm){
-
-    if (layer_id== 0) {
-        var name = "gid ='" + parseInt(search_perm) + "'";
-    }else if(layer_id== 1){
-        var name = "gid ='" + search_perm + "'";
-    }
-    else if(layer_id== 2){
-        var name = "gid ='" + search_perm + "'";
-    }
-    else if(layer_id== 3){
-        var name = "gid ='" + search_perm + "'";
-    }
-
-    L.esri.query({
-        url: "http://202.166.168.183:6080/arcgis/rest/services/Punjab/PB_space_tech_raster_dashboard_db73_v_12032021/MapServer/"+layer_id
-
-    }).where(name).run(function(error, result){
-        // draw result on the map
-        if(typeof glayer != 'undefined'){
-            glayer.clearLayers();
-        };
-
-        glayer = L.geoJson(result).addTo(map);
-
-
-
-        // fit map to boundry
-        map.fitBounds(glayer.getBounds());
-
-    });
-
-};
-
-
-    var instance = M.Tabs.init(document.getElementsByClassName("tabs")[0], '');
-    
-        // var tabs = document.querySelectorAll('.tabs')
-        // for (var i = 0; i < tabs.length; i++){
-        //     M.Tabs.init(tabs[i]);
-        // }
 
 
 
 $(document).ready(function(){
     // $('.tabs').tabs();
+    // ...........navigation select..........
     $('select').formSelect();
 
+
+    $("#drawpoly").click(function(){
+        $('.leaflet-popup-pane .leaflet-draw-tooltip').show();
+        drawnItems.clearLayers();
+        $('.leaflet-draw-draw-polygon')[0].click()
+        });
+
+
+    // ...........TOC Lyrs adding to map..........
     var url='http://202.166.168.183:6080/arcgis/rest/services/Punjab/PB_space_tech_raster_dashboard_db73_v_12032021/MapServer';
 
         divi=L.esri.dynamicMapLayer({
@@ -134,6 +153,16 @@ $(document).ready(function(){
         city.addTo(map);
 
 
+
+// ........... Shape file upload..........
+    $("#shp").on("change", function (e) {
+        var file = $(this)[0].files[0];
+        addShapefile(file);
+        this.value = null;
+    });
+
+
+// ........... Navigation load_divisions data..........
     $.ajax({
         url: "services/load_division.php",
         type: "POST",
@@ -150,58 +179,11 @@ $(document).ready(function(){
             }
         }
     });
-    //   function load_division() {
-    //     var str='';  
-    //     $.ajax({
-    //         url: "php/load_division.php",
-    //         type: "POST",
-    //         dataType: 'json',
-    //         async: false,
-    //         success: function callback(resp) {
-    //             console.resp(resp);
-    //             for(var i=0;i<resp.length;i++){
-    //                 str +='<option value=" '+division_name+' ">'+division_name+'</option>'; 
-    //             }
-    //             $("#division").html(str);
-
-
-    //         }
-    //     });
-
-    //     function query_by_nid_new(layer_id,search_perm){
-
-    //         if (layer_id== 12) {
-    //             var name = "gid ='" + search_perm + "'";
-    //         }else if(layer_id== 11){
-    //                 var name = "gid ='" + search_perm + "'";
-    //         }
-        
-        
-    //         var ip="202.166.167.121";
-        
-        
-    //         L.esri.query({
-    //             url: "http://"+ipAddress+":6080/arcgis/rest/services/Punjab/PB_irisportal_pg31_misc_query_v_05032018/MapServer/"+layer_id
-                
-    //         }).where(name).run(function(error, result){
-    //             // draw result on the map
-    //             if(typeof glayer != 'undefined'){
-    //                 glayer.clearLayers();
-    //             };
-        
-    //             glayer = L.geoJson(result,{ style: myStyle}).addTo(map);
-        
-        
-        
-    //             // fit map to boundry
-    //             map.fitBounds(glayer.getBounds());
-        
-    //         });
-        
-    //     };
-    // }
+    
 });
 
+
+// ........... Navigation..........
 $('#division').on('change', function() {
     var dvid= this.value; 
     
@@ -259,3 +241,78 @@ $('#tehsil').on('change', function() {
         }
     });
 });
+
+// ........... Navigation lyr & zoom to that lyr..........
+function query_by_nid_new(layer_id,search_perm){
+
+    if (layer_id== 0) {
+        var name = "gid ='" + parseInt(search_perm) + "'";
+    }else if(layer_id== 1){
+        var name = "gid ='" + search_perm + "'";
+    }
+    else if(layer_id== 2){
+        var name = "gid ='" + search_perm + "'";
+    }
+    else if(layer_id== 3){
+        var name = "gid ='" + search_perm + "'";
+    }
+
+    L.esri.query({
+        url: "http://202.166.168.183:6080/arcgis/rest/services/Punjab/PB_space_tech_raster_dashboard_db73_v_12032021/MapServer/"+layer_id
+
+    }).where(name).run(function(error, result){
+        // draw result on the map
+        if(typeof glayer != 'undefined'){
+            glayer.clearLayers();
+        };
+
+        glayer = L.geoJson(result).addTo(map);
+
+
+
+        // fit map to boundry
+        map.fitBounds(glayer.getBounds());
+
+    });
+
+};
+
+
+function addShapefile(file){
+
+    var reader = new FileReader();
+    reader.readAsArrayBuffer(file);
+    reader.onload = function (event) {
+        var data = reader.result;
+        myLayers[file.name] = new L.Shapefile(data);
+        var mp_array=[];
+        setTimeout(function(){
+            var pToMultiP=myLayers[file.name].toGeoJSON();
+            for(var i=0;i<pToMultiP.features.length;i++){
+                if(pToMultiP.features[i].geometry.coordinates.length==3) {
+                    pToMultiP.features[i].geometry.coordinates.pop();
+                }
+                mp_array.push(pToMultiP.features[i].geometry.coordinates)
+
+            }
+
+            var mp_geoJson={
+                "TYPE": "MultiPoint",
+                "coordinates": mp_array
+            }
+            var mp_str=JSON.stringify(mp_geoJson);
+            // $("#kmlf").val(mp_str);
+          
+            console.log(mp_str)
+        },3000)
+       
+        
+
+        map.addLayer(myLayers[file.name]);
+
+        setTimeout(function(){
+            map.fitBounds(myLayers[file.name].getBounds());
+       
+        },300)
+    }
+}

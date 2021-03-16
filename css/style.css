@@ -65,3 +65,22 @@ hr.hr1{
 .card{
     box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
 }
+
+/* .tabs .tab a{
+    color:#eee;
+} 
+
+.tabs .tab a:hover {
+    background-color:#ee6e73;
+    color:#eee;
+} 
+
+.tabs .tab a.active {
+    background-color:#d0be26;
+    color:#fafafa;
+}  */
+
+
+.tabs .indicator {
+    background-color:#d0be26;
+} /*Color of underline*/

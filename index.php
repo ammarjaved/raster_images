@@ -14,14 +14,30 @@ else {
 <head>
     <meta charset="UTF-8">
     <title>SP</title>
-    <!-- Compiled and minified CSS -->
+    <!-- materialize icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--materialize Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="css/style.css">
-    
+
+    <!-- Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
+    <!-- Leaflet esri start -->
     <script src="https://unpkg.com/esri-leaflet@2.1.1/dist/esri-leaflet.js"></script>
+
+    <!-- Leaflet draw Plugin -->
+    <link rel="stylesheet" href="resources/draw/leaflet.draw.css"/>
+    <script src="resources/draw/leaflet.draw-custom.js"></script>
+
+    <!-- Leaflet fullscreen Plugin  -->
+    <script src="resources/full_screen/Leaflet.fullscreen.min.js"></script>
+    <link rel="stylesheet" href="resources/full_screen/leaflet.fullscreen.css">
+
+    <!--shapefile modules-->
+    <script src="js/shapefile/shp.js"></script>
+    <script src="js/shapefile/leaflet.shpfile.js"></script>
 
 
 </head>
@@ -54,15 +70,16 @@ else {
                   </ul>
                 </div>
                 <div class="tabsdata">
-                    <div id="toc" class="col s12">
+                    <div style="margin-left:20px;" id="toc" class="col s12">
                         <form action="#">
                           
-                            <p>
+                            <p >
                             <label>
                                 <input type="checkbox" class="filled-in" checked="checked" onclick="addRemoveLayer('divi')" id="divi" />
                                 <span>Division</span>
                             </label>
                             </p>
+                            <!-- &nbsp<img src="images/divi.png" style="display: inline-block; margin-top: 20px;" alt="" width="30" height="30"> -->
                             <p>
                             <label>
                                 <input type="checkbox" class="filled-in" checked="checked" onclick="addRemoveLayer('dist')" id="dist" />
@@ -114,21 +131,52 @@ else {
                     
                     <div id="search" class="col s12">
                         <form action="#">
+
+                            <p class="center-align">
+                                <a id="drawpoly" class="waves-effect waves-light btn-small green"><i class="material-icons left">drive_file_rename_outline</i>Draw Polygon</a>
+                            </p>
+                            <br>
                             <div class="file-field input-field">
-                                <div class="btn green">
+                                <div class="btn-small green">
+                                <i class="material-icons left">drive_folder_upload</i>
                                     <span>Upload File</span>
-                                    <input type="file" multiple>
+                                    <input type="file" id="shp" accept=".zip">
                                 </div>
                                 <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                                    <input class="file-path validate" type="text" placeholder="Upload Shape file" >
                                 </div>
                             </div>
-                            <a class="right waves-effect waves-light green btn-small" style="margin-bottom:5px !important;">Search</a>
+
+                            
+
+                            <!-- <a class="right waves-effect waves-light green btn-small" style="margin-bottom:5px !important;">Search</a> -->
                             
                         </form>
                     </div>
                     
                     <div id="result" class="col s12">
+                        <div style="padding-left: 0px;" class="card col s12">
+                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
+                            <div class="container" style="float:right;width:45%">
+                                <b>Name: </b><a href="#">Lahore image</a>
+                                <p><b>Description:  </b>minare pakistan image</p>
+                                <a class="right waves-effect waves-light green btn-small" style="margin-bottom:5px !important;">Download</a>
+                            </div>
+                        </div>
+                        <div style="padding-left: 0px;" class="card col s12">
+                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
+                            <div class="container" style="float:right;width:45%">
+                                <b>Name: </b><a href="#">Lahore image</a>
+                                <p><b>Description:  </b>minare pakistan image</p>
+                            </div>
+                        </div>
+                        <div style="padding-left: 0px;" class="card col s12">
+                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
+                            <div class="container" style="float:right;width:45%">
+                                <b>Name: </b><a href="#">Lahore image</a>
+                                <p><b>Description:  </b>minare pakistan image</p>
+                            </div>
+                        </div>
                         <div style="padding-left: 0px;" class="card col s12">
                             <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
                             <div class="container" style="float:right;width:45%">
@@ -163,27 +211,7 @@ else {
                             <div class="container" style="float:right;width:45%">
                                 <b>Name: </b><a href="#">Lahore image</a>
                                 <p><b>Description:  </b>minare pakistan image</p>
-                            </div>
-                        </div>
-                        <div style="padding-left: 0px;" class="card col s12">
-                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                            <div class="container" style="float:right;width:45%">
-                                <b>Name: </b><a href="#">Lahore image</a>
-                                <p><b>Description:  </b>minare pakistan image</p>
-                            </div>
-                        </div>
-                        <div style="padding-left: 0px;" class="card col s12">
-                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                            <div class="container" style="float:right;width:45%">
-                                <b>Name: </b><a href="#">Lahore image</a>
-                                <p><b>Description:  </b>minare pakistan image</p>
-                            </div>
-                        </div>
-                        <div style="padding-left: 0px;" class="card col s12">
-                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                            <div class="container" style="float:right;width:45%">
-                                <b>Name: </b><a href="#">Lahore image</a>
-                                <p><b>Description:  </b>minare pakistan image</p>
+                                <a class="right waves-effect waves-light green btn-small" style="margin-bottom:5px !important;">Download</a>
                             </div>
                         </div>
                     </div>
