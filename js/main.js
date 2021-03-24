@@ -58,9 +58,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
     map.on(L.Draw.Event.CREATED, function (event) {
         var layer = event.layer;
-
         drawnItems.addLayer(layer);
+        console.log(layer.getLatLngs())
+         // console.log(layer.toGeoJSON())
     });
+
+   
 
 
 // ...........TOC btns work..........
@@ -112,9 +115,28 @@ function addRemoveLayer(perm){
 
 
 $(document).ready(function(){
+
+    if(urole == 'admin'){
+        $("#admindata").show();
+        $("#normaluser").hide();
+     }
+    else
+    {
+        $("#admindata").hide();
+        $("#normaluser").show();
+    }
+    $('#reqbtn').click(function(){
+        if($("#reqin").val() == ''){
+            alertify.error("Please first fill why you want to Request");
+        }
+    });
+    
+     
     // $('.tabs').tabs();
     // ...........navigation select..........
     $('select').formSelect();
+
+    $('.modal').modal();
 
 
     $("#drawpoly").click(function(){
@@ -169,10 +191,7 @@ $(document).ready(function(){
         dataType: 'json',
         async: false,
         success: function callback(resp) {
-            console.log(resp);
-           
-                
-                
+            // console.log(resp);
             for(var i=0;i<resp.length;i++){
                 // str +='<option value=" '+resp[i].division_name+' ">'+resp[i].division_name+'</option>'; 
                 $("#division").formSelect().append($('<option value=" '+resp[i].gid+' ">'+resp[i].division_name+'</option>'));

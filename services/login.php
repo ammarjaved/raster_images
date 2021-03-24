@@ -18,7 +18,7 @@ class LoginUser extends connection
       // print_r($user_pass);
       // exit();
 
-      $check_sql = "select id,user_name,password from tbl_users where user_name='$user_name' and password='$user_pass'";
+      $check_sql = "select id,user_name,password,user_role from tbl_users where user_name='$user_name' and password='$user_pass'";
       //echo $check_sql;
       $check_query = pg_query($check_sql);
 
@@ -27,6 +27,7 @@ class LoginUser extends connection
       if ($rs['user_name'] == $user_name && $rs['password']==$user_pass) {
           $_SESSION['logedin']=$rs['user_name'];
           $_SESSION['user_id']=$rs['id'];
+          $_SESSION['user_role']=$rs['user_role'];
 
           return "success";
       }else{

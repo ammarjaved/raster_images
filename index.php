@@ -18,7 +18,16 @@ else {
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--materialize Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+     <!--alertfy lib file-->
+     <link rel="stylesheet" href="resources/alertify/themes/alertify.core.css"/>
+    <link rel="stylesheet" href="resources/alertify/themes/alertify.default.css"/>
+    <script src="resources/alertify/lib/alertify.min.js"></script>
+
+
     <link rel="stylesheet" href="css/style.css">
+
+    
 
     <!-- Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
@@ -63,10 +72,11 @@ else {
             <div class="row">
                 <div class="col s12 tabsdiv" >
                   <ul class="tabs" >
-                    <li class="tab col s3"><a href="#toc">TOC</a></li>
                     <li class="tab col s3"><a href="#navi">Navigation</a></li>
+                    <li class="tab col s1"><a href="#toc">TOC</a></li>
                     <li class="tab col s3"><a href="#search">Search</a></li>
-                    <li class="tab col s3"><a href="#result">Reasult</a></li>
+                    <li class="tab col s2"><a href="#result">Reasult</a></li>
+                    <li class="tab col s3"><a href="#requests">Requests</a></li>
                   </ul>
                 </div>
                 <div class="tabsdata">
@@ -160,7 +170,7 @@ else {
                             <div class="container" style="float:right;width:45%">
                                 <b>Name: </b><a href="#">Lahore image</a>
                                 <p><b>Description:  </b>minare pakistan image</p>
-                                <a class="right waves-effect waves-light green btn-small" style="margin-bottom:5px !important;">Download</a>
+                                <a href="#detail_modal" class="right waves-effect waves-light green btn-small modal-trigger"  style="margin-bottom:5px !important;">Details</a>
                             </div>
                         </div>
                         <div style="padding-left: 0px;" class="card col s12">
@@ -182,7 +192,7 @@ else {
                             <div class="container" style="float:right;width:45%">
                                 <b>Name: </b><a href="#">Lahore image</a>
                                 <p><b>Description:  </b>minare pakistan image</p>
-                                <a class="right waves-effect waves-light green btn-small" style="margin-bottom:5px !important;">Download</a>
+                                <a href="#detail_modal" class="right waves-effect waves-light green btn-small modal-trigger"  style="margin-bottom:5px !important;">Details</a>
                             </div>
                         </div>
                         <div style="padding-left: 0px;" class="card col s12">
@@ -211,10 +221,75 @@ else {
                             <div class="container" style="float:right;width:45%">
                                 <b>Name: </b><a href="#">Lahore image</a>
                                 <p><b>Description:  </b>minare pakistan image</p>
-                                <a class="right waves-effect waves-light green btn-small" style="margin-bottom:5px !important;">Download</a>
+                                <a href="#detail_modal" class="right waves-effect waves-light green btn-small modal-trigger"  style="margin-bottom:5px !important;">Details</a>
                             </div>
+                        </div>
+
+
+                        <!-- Modal Structure -->
+                        <div id="detail_modal" class="modal">
+                            <form action="#">
+                                <div class="modal-content">
+                                    <div style="padding-left: 0px;" class="card col s12">
+                                        <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
+                                        <div class="container" style="float:right;width:45%">
+                                            <b>Name: </b><a href="#">Lahore image</a>
+                                            <p><b>src:  </b>minare pakistan image</p>
+                                            <p><b>Description:  </b>minare pakistan image</p>
+                                            <p><b>Meta Data:  </b>minare pakistan image</p>
+                                            <b>Name: </b><a href="#">Lahore image</a>
+                                            <p><b>src:  </b>minare pakistan image</p>
+                                            <p><b>Description:  </b>minare pakistan image</p>
+                                            <p><b>Meta Data:  </b>minare pakistan image</p>
+
+                                            <div class="input-field col s12">
+                                            <input id="" type="text" class="validate" required >
+                                            <label for="reqin">Reason For Sending Request</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                <a id="reqbtn" class="right waves-effect waves-light green btn-small" style="margin-bottom:5px !important; margin-right:5px">Request</a> 
+                                
+                                <a href="#!" class="right modal-close waves-effect waves-green red btn-small" style="margin-bottom:5px !important; margin-right:5px">Cancel</a>
+                                </div>
+                            </form>
                         </div>
                     </div>
+
+                    <div id="requests" class="col s12">
+                        
+                        <div id="normaluser" style="padding-left: 0px;" class="card col s12">
+                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
+                            <div class="container" style="float:right;width:45%">
+                                <b>Name: </b><a href="#">Lahore image</a>
+                                <p><b>Description:  </b>minare pakistan image</p>
+                                <p><b>Status:  </b><span class=" right badge">Requested</span></p>
+                                
+                            </div>
+                        </div>
+
+                        <div id="admindata" style="padding-left: 0px;" class="card col s12">
+
+                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
+                            <div class="container" style="float:right;width:45%">
+                                <b>Name: </b><a href="#">Lahore image</a>
+                                <p><b>Description:  </b>minare pakistan image</p>
+                            </div>
+
+                            <div class="col s12">
+                            <a id="approvebtn" class="right waves-effect waves-light green btn-small" style="margin-bottom:5px !important; ">Approve</a>
+                            <a class="right waves-effect waves-light red btn-small" style="margin-bottom:5px !important; margin-right:5px !important;">Reject</a>    
+                            </div>
+
+                        </div>
+
+                        
+                                              
+                    </div>
+
                 </div>
                 
             </div>
@@ -230,6 +305,9 @@ else {
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        var urole='<?php echo $_SESSION['user_role'];?>'
+    </script>
 <script src="js/main.js"></script>
 </body>
 

@@ -80,7 +80,14 @@ hr.hr1{
     color:#fafafa;
 }  */
 
-
 .tabs .indicator {
-    background-color:#d0be26;
+    background-color:#FFC128
 } /*Color of underline*/
+.tabs .tab a.active {
+    
+    color:#FFC128
+}  
+.tabs .tab a:hover {
+    
+    color:#d0be26;
+} 

@@ -2,13 +2,13 @@
 class Connection
 {
    public $hostname = 'localhost';
-     // public $hostname = '172.20.82.138';
-    // public $port        = 5432;
-    //public $database    = 'db_iris_portal';
+    // public $hostname = '172.20.82.72';
+    public $port        = 5432;
     public $database    = 'rastersp_db';
     public $username     = 'postgres';
+    // public $password = 'diamondx';
     public $password     = '111';
-   // public $password     = '123';
+
     public $conDB;
 
     public function connectionDB(){
