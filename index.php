@@ -73,9 +73,9 @@ else {
                 <div class="col s12 tabsdiv" >
                   <ul class="tabs" >
                     <li class="tab col s3"><a href="#navi">Navigation</a></li>
-                    <li class="tab col s1"><a href="#toc">TOC</a></li>
-                    <li class="tab col s3"><a href="#search">Search</a></li>
-                    <li class="tab col s2"><a href="#result">Reasult</a></li>
+                    <li class="tab col s2"><a href="#toc">TOC</a></li>
+                    <li class="tab col s2"><a href="#search">Search</a></li>
+                    <li class="tab col s2"><a href="#result" id="resulttab">Reasult</a></li>
                     <li class="tab col s3"><a href="#requests">Requests</a></li>
                   </ul>
                 </div>
@@ -141,9 +141,13 @@ else {
                     
                     <div id="search" class="col s12">
                         <form action="#">
-
+                            <input type="hidden" id="cords" name="cordsinput">
                             <p class="center-align">
                                 <a id="drawpoly" class="waves-effect waves-light btn-small green"><i class="material-icons left">drive_file_rename_outline</i>Draw Polygon</a>
+                            </p>
+
+                            <p class="center-align">
+                            <a id="psubmit_btn" class="waves-effect waves-light btn-small green"><i class="material-icons left">send</i>Submit</a>
                             </p>
                             <br>
                             <div class="file-field input-field">
@@ -165,65 +169,11 @@ else {
                     </div>
                     
                     <div id="result" class="col s12">
-                        <div style="padding-left: 0px;" class="card col s12">
-                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                            <div class="container" style="float:right;width:45%">
-                                <b>Name: </b><a href="#">Lahore image</a>
-                                <p><b>Description:  </b>minare pakistan image</p>
-                                <a href="#detail_modal" class="right waves-effect waves-light green btn-small modal-trigger"  style="margin-bottom:5px !important;">Details</a>
-                            </div>
+                        <div id="resultbox">
+                            
+                                                       
                         </div>
-                        <div style="padding-left: 0px;" class="card col s12">
-                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                            <div class="container" style="float:right;width:45%">
-                                <b>Name: </b><a href="#">Lahore image</a>
-                                <p><b>Description:  </b>minare pakistan image</p>
-                            </div>
-                        </div>
-                        <div style="padding-left: 0px;" class="card col s12">
-                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                            <div class="container" style="float:right;width:45%">
-                                <b>Name: </b><a href="#">Lahore image</a>
-                                <p><b>Description:  </b>minare pakistan image</p>
-                            </div>
-                        </div>
-                        <div style="padding-left: 0px;" class="card col s12">
-                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                            <div class="container" style="float:right;width:45%">
-                                <b>Name: </b><a href="#">Lahore image</a>
-                                <p><b>Description:  </b>minare pakistan image</p>
-                                <a href="#detail_modal" class="right waves-effect waves-light green btn-small modal-trigger"  style="margin-bottom:5px !important;">Details</a>
-                            </div>
-                        </div>
-                        <div style="padding-left: 0px;" class="card col s12">
-                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                            <div class="container" style="float:right;width:45%">
-                                <b>Name: </b><a href="#">Lahore image</a>
-                                <p><b>Description:  </b>minare pakistan image</p>
-                            </div>
-                        </div>
-                        <div style="padding-left: 0px;" class="card col s12">
-                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                            <div class="container" style="float:right;width:45%">
-                                <b>Name: </b><a href="#">Lahore image</a>
-                                <p><b>Description:  </b>minare pakistan image</p>
-                            </div>
-                        </div>
-                        <div style="padding-left: 0px;" class="card col s12">
-                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                            <div class="container" style="float:right;width:45%">
-                                <b>Name: </b><a href="#">Lahore image</a>
-                                <p><b>Description:  </b>minare pakistan image</p>
-                            </div>
-                        </div>
-                        <div style="padding-left: 0px;" class="card col s12">
-                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                            <div class="container" style="float:right;width:45%">
-                                <b>Name: </b><a href="#">Lahore image</a>
-                                <p><b>Description:  </b>minare pakistan image</p>
-                                <a href="#detail_modal" class="right waves-effect waves-light green btn-small modal-trigger"  style="margin-bottom:5px !important;">Details</a>
-                            </div>
-                        </div>
+                        
 
 
                         <!-- Modal Structure -->
@@ -238,15 +188,10 @@ else {
                                             <p><b>Description:  </b>minare pakistan image</p>
                                             <p><b>Meta Data:  </b>minare pakistan image</p>
                                             <b>Name: </b><a href="#">Lahore image</a>
-                                            <p><b>src:  </b>minare pakistan image</p>
-                                            <p><b>Description:  </b>minare pakistan image</p>
-                                            <p><b>Meta Data:  </b>minare pakistan image</p>
-
                                             <div class="input-field col s12">
                                             <input id="" type="text" class="validate" required >
                                             <label for="reqin">Reason For Sending Request</label>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -257,6 +202,8 @@ else {
                                 </div>
                             </form>
                         </div>
+
+                        <a href="#nextbtn" class="right waves-effect waves-light green btn-small modal-trigger"  style="margin-bottom:5px !important;">Next</a>
                     </div>
 
                     <div id="requests" class="col s12">

@@ -1,13 +1,13 @@
 <?php
 class Connection
 {
-   public $hostname = 'localhost';
-    // public $hostname = '172.20.82.72';
+   // public $hostname = 'localhost';
+    public $hostname = '172.20.82.73';
     public $port        = 5432;
-    public $database    = 'rastersp_db';
+    public $database    = 'db_raster_spacetech';
     public $username     = 'postgres';
-    // public $password = 'diamondx';
-    public $password     = '111';
+    public $password = 'diamondx';
+    // public $password     = '111';
 
     public $conDB;
 

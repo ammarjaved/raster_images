@@ -19,7 +19,7 @@ class Pss extends connection
 
         $did=$_REQUEST['did'];
         
-        $sql1="select gid, tehsil_name from tbl_tehsil where district_id = $did;";
+        $sql1="select gid, tehsil_n from tbl_tehsil where district_id = $did;";
 
 
 

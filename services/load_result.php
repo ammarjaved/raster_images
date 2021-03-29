@@ -17,12 +17,12 @@ class Pss extends connection
 
         $output = array();
 
-        $dvn=$_REQUEST['dvid'];
-        // $dvid=2;
+        $geom=$_REQUEST['geom'];
+        // echo $geom;
+        // exit();
+
+        $sql1="select * from tbl_punjab_grid where st_intersects(st_geomfromtext(st_Astext(ST_GeomFromGeoJSON('$geom')),4326),geom)";
         
-        $sql1="select gid, district_n from tbl_district where division = $dvn;";
-
-
         $result_query = pg_query($sql1);
         if ($result_query) {
             $output = pg_fetch_all($result_query);

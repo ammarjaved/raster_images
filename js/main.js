@@ -4,6 +4,8 @@ var divi;
 var dist;
 var teh;
 var city;
+var layer;
+var pgeom
 
 
     // ...........sidebar Tabs..........
@@ -57,11 +59,19 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     }));
 
     map.on(L.Draw.Event.CREATED, function (event) {
-        var layer = event.layer;
+            layer = event.layer;
         drawnItems.addLayer(layer);
-        console.log(layer.getLatLngs())
-         // console.log(layer.toGeoJSON())
+
+        pgeom = '';
+        pgeom = JSON.stringify(layer.toGeoJSON().geometry);
+       
     });
+
+    map.on('draw:editvertex', function (e) { 
+        var poly = e.poly;
+        pgeom = '';
+        pgeom = JSON.stringify(poly.toGeoJSON().geometry);
+      });
 
    
 
@@ -176,15 +186,15 @@ $(document).ready(function(){
 
 
 
-// ........... Shape file upload..........
-    $("#shp").on("change", function (e) {
-        var file = $(this)[0].files[0];
-        addShapefile(file);
-        this.value = null;
-    });
+    // ........... Shape file upload..........
+        $("#shp").on("change", function (e) {
+            var file = $(this)[0].files[0];
+            addShapefile(file);
+            this.value = null;
+        });
 
 
-// ........... Navigation load_divisions data..........
+    // ........... Navigation load_divisions data..........
     $.ajax({
         url: "services/load_division.php",
         type: "POST",
@@ -194,14 +204,65 @@ $(document).ready(function(){
             // console.log(resp);
             for(var i=0;i<resp.length;i++){
                 // str +='<option value=" '+resp[i].division_name+' ">'+resp[i].division_name+'</option>'; 
-                $("#division").formSelect().append($('<option value=" '+resp[i].gid+' ">'+resp[i].division_name+'</option>'));
+                $("#division").formSelect().append($('<option value=" '+resp[i].gid+' ">'+resp[i].division+'</option>'));
             }
         }
     });
+
+   
+
     
 });
+var pageNum = 0;
 
+function nextPage() {
 
+    var maxnoPerPage = 4;
+    var firstpage = maxnoPerPage * pageNum;
+    var currentpage = firstpage;
+    var $articles = $($(articles), "article");
+    var i = 0;
+    while(currentpage < $articles.length && i < 4) {
+        $("#flightlisting").append($articles.eq(currentpage));
+        i++;
+        currentpage++;
+    }
+    pageNum++;
+    if(currentpage == $articles.length)
+        $("#next").prop("disabled", true);
+}
+
+$("button").click(function(){nextPage();});
+
+ // polygon submit btn
+
+ var str='';
+ $('#psubmit_btn').on('click', function() {
+    
+    console.log(pgeom)
+    $.ajax({
+        url: "services/load_result.php?geom=" +pgeom,
+        type: "POST",
+        dataType: "json",
+        async: false,
+        success: function callback(response) {
+            console.log(response);
+            for(var i=0;i<response.length;i++){
+                console.log()
+                str=str+'<div style="padding-left: 0px;" class="card col s12">'+
+                    '<img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">'+
+                    '<div class="container" style="float:right;width:45%">'+
+                    '<b>Name: </b><a href="#">'+response[i].name+'</a>'+
+                    '<p><b>Description:  </b>'+response[i].province+'</p>'+
+                    '<a href="#detail_modal" class="right waves-effect waves-light green btn-small modal-trigger"  style="margin-bottom:5px !important;">Details</a>'+
+                    '</div>'+
+                    '</div>'
+            }
+            $('#resultbox').html(str);  
+        }
+    });
+    instance.select('#resulttab');
+});
 // ........... Navigation..........
 $('#division').on('change', function() {
     var dvid= this.value; 
@@ -217,7 +278,7 @@ $('#division').on('change', function() {
                 
                 
             for(var i=0;i<resp.length;i++){
-                $("#district").formSelect().append($('<option value=" '+resp[i].gid+' ">'+resp[i].district_name+'</option>'));
+                $("#district").formSelect().append($('<option value=" '+resp[i].district_n+' ">'+resp[i].district_n+'</option>'));
             }
         }
     });
@@ -236,7 +297,7 @@ $('#district').on('change', function() {
                 
                 
             for(var i=0;i<resp.length;i++){
-                $("#tehsil").formSelect().append($('<option value=" '+resp[i].gid+' ">'+resp[i].tehsil_name+'</option>'));
+                $("#tehsil").formSelect().append($('<option value=" '+resp[i].gid+' ">'+resp[i].tehsil_n+'</option>'));
             }
         }
     });

@@ -19,7 +19,7 @@ class Pss extends connection
 
 
         
-        $sql1="select gid, division_name from tbl_division order by division_name;";
+        $sql1="select gid, division from tbl_division order by division;";
 
 
         $result_query = pg_query($sql1);
