@@ -18,7 +18,7 @@ class Pss extends connection
         $output = array();
         $tid=$_REQUEST['tid'];
         
-        $sql1="select gid, mc_name from tbl_cities where objectid_1 = $tid;";
+        $sql1="select gid, mc_name from tbl_cities where mc_name = '$tid';";
 
         
 

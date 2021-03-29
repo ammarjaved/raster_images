@@ -212,7 +212,7 @@ $(document).ready(function(){
             // console.log(resp);
             for(var i=0;i<resp.length;i++){
                 // str +='<option value=" '+resp[i].division_name+' ">'+resp[i].division_name+'</option>'; 
-                $("#division").formSelect().append($('<option value=" '+resp[i].gid+' ">'+resp[i].division+'</option>'));
+                $("#division").formSelect().append($('<option value="'+resp[i].division+'">'+resp[i].division+'</option>'));
             }
         }
     });
@@ -273,10 +273,10 @@ $("button").click(function(){nextPage();});
 });
 // ........... Navigation..........
 $('#division').on('change', function() {
-    var dvid= this.value; 
+    var dvname= this.value; 
     
     $.ajax({
-        url: "services/load_district.php?dvid="+dvid,
+        url: "services/load_district.php?dvn="+dvname,
         type: "POST",
         dataType: 'json',
         async: false,
@@ -286,7 +286,7 @@ $('#division').on('change', function() {
                 
                 
             for(var i=0;i<resp.length;i++){
-                $("#district").formSelect().append($('<option value=" '+resp[i].district_n+' ">'+resp[i].district_n+'</option>'));
+                $("#district").formSelect().append($('<option value="'+resp[i].district_n+'">'+resp[i].district_n+'</option>'));
             }
         }
     });
@@ -305,7 +305,7 @@ $('#district').on('change', function() {
                 
                 
             for(var i=0;i<resp.length;i++){
-                $("#tehsil").formSelect().append($('<option value=" '+resp[i].gid+' ">'+resp[i].tehsil_n+'</option>'));
+                $("#tehsil").formSelect().append($('<option value="'+resp[i].tehsil_n+'">'+resp[i].tehsil_n+'</option>'));
             }
         }
     });
@@ -324,7 +324,7 @@ $('#tehsil').on('change', function() {
                 
                 
             for(var i=0;i<resp.length;i++){
-                $("#city").formSelect().append($('<option value=" '+resp[i].gid+' ">'+resp[i].mc_name+'</option>'));
+                $("#city").formSelect().append($('<option value="'+resp[i].mc_name+'">'+resp[i].mc_name+'</option>'));
             }
         }
     });
@@ -334,15 +334,15 @@ $('#tehsil').on('change', function() {
 function query_by_nid_new(layer_id,search_perm){
 
     if (layer_id== 0) {
-        var name = "gid ='" + parseInt(search_perm) + "'";
+        var name = "division ='"+search_perm+"'";
     }else if(layer_id== 1){
-        var name = "gid ='" + search_perm + "'";
+        var name = "district_n ='"+search_perm+"'";
     }
     else if(layer_id== 2){
-        var name = "gid ='" + search_perm + "'";
+        var name = "tehsil_n ='"+search_perm+"'";
     }
     else if(layer_id== 3){
-        var name = "gid ='" + search_perm + "'";
+        var name = "mc_name ='"+search_perm+"'";
     }
 
     L.esri.query({

@@ -17,10 +17,10 @@ class Pss extends connection
 
         $output = array();
 
-        $dvn=$_REQUEST['dvid'];
+        $dvn=$_REQUEST['dvn'];
         // $dvid=2;
         
-        $sql1="select gid, district_n from tbl_district where division = $dvn;";
+        $sql1="select gid, district_n from tbl_district where division = '$dvn'; ";
 
 
         $result_query = pg_query($sql1);
