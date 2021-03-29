@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../raster_dashboard/.idea/image_dashboard.iml" filepath="$PROJECT_DIR$/../raster_dashboard/.idea/image_dashboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/raster_images.iml" filepath="$PROJECT_DIR$/.idea/raster_images.iml" />
     </modules>
   </component>
 </project>

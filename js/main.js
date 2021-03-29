@@ -4,6 +4,7 @@ var divi;
 var dist;
 var teh;
 var city;
+var grid;
 
 
     // ...........sidebar Tabs..........
@@ -173,6 +174,12 @@ $(document).ready(function(){
             layers: [3]
             });
         city.addTo(map);
+    grid=L.esri.dynamicMapLayer({
+        url: url,
+        opacity: 0.7,
+        layers: [4]
+    });
+    grid.addTo(map);
 
 
 
