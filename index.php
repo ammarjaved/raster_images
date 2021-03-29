@@ -177,33 +177,23 @@ else {
 
 
                         <!-- Modal Structure -->
-                        <div id="detail_modal" class="modal">
-                            <form action="#">
-                                <div class="modal-content">
-                                    <div style="padding-left: 0px;" class="card col s12">
-                                        <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                                        <div class="container" style="float:right;width:45%">
-                                            <b>Name: </b><a href="#">Lahore image</a>
-                                            <p><b>src:  </b>minare pakistan image</p>
-                                            <p><b>Description:  </b>minare pakistan image</p>
-                                            <p><b>Meta Data:  </b>minare pakistan image</p>
-                                            <b>Name: </b><a href="#">Lahore image</a>
-                                            <div class="input-field col s12">
-                                            <input id="" type="text" class="validate" required >
-                                            <label for="reqin">Reason For Sending Request</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div id="detail_modal" class="d_modal">
+                            
+                                <div class="modal-content" >
+                                   <div id="modaldata">
+                                   
+                                   </div>
+                                       
                                 </div>
                                 <div class="modal-footer">
                                 <a id="reqbtn" class="right waves-effect waves-light green btn-small" style="margin-bottom:5px !important; margin-right:5px">Request</a> 
                                 
                                 <a href="#!" class="right modal-close waves-effect waves-green red btn-small" style="margin-bottom:5px !important; margin-right:5px">Cancel</a>
                                 </div>
-                            </form>
+                           
                         </div>
 
-                        <a href="#nextbtn" class="right waves-effect waves-light green btn-small modal-trigger"  style="margin-bottom:5px !important;">Next</a>
+                        <a href="#nextbtn" class="right waves-effect waves-light green btn-small "  style="margin-bottom:5px !important;">Next</a>
                     </div>
 
                     <div id="requests" class="col s12">

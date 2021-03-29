@@ -127,6 +127,11 @@ function addRemoveLayer(perm){
 
 
 $(document).ready(function(){
+    $(".d_modal").show();
+    $(".d_modal").modal();
+    $("#detail_modal").modal();
+    $("#detail_modal").modal('open');
+    $("#detail_modal").modal().modal('open');
 
     if(urole == 'admin'){
         $("#admindata").show();
@@ -261,8 +266,8 @@ $("button").click(function(){nextPage();});
                     '<img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">'+
                     '<div class="container" style="float:right;width:45%">'+
                     '<b>Name: </b><a href="#">'+response[i].name+'</a>'+
-                    '<p><b>Description:  </b>'+response[i].province+'</p>'+
-                    '<a href="#detail_modal" class="right waves-effect waves-light green btn-small modal-trigger"  style="margin-bottom:5px !important;">Details</a>'+
+                    '<p><b>Province:  </b>'+response[i].province+'</p>'+
+                    '<a id="'+response[i].gid+'" class="detailbtn right waves-effect waves-light green btn-small modal-trigger"  style="margin-bottom:5px !important;">Details</a>'+
                     '</div>'+
                     '</div>'
             }
@@ -270,6 +275,46 @@ $("button").click(function(){nextPage();});
         }
     });
     instance.select('#resulttab');
+});
+
+var str1='';
+ $('.detailbtn').on('click', function() {
+    var gid=$(this).attr('id');
+    console.log(pgeom)
+    $.ajax({
+        url: "services/load_modal.php?gid=" +gid,
+        type: "POST",
+        dataType: "json",
+        async: false,
+        success: function callback(response) {
+            console.log(response);
+
+                str1=str1+' <div style="padding-left: 0px;" class="card col s12">'+
+                    '<img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">'+
+                    '<div class="container" style="float:right;width:45%">'+
+                    '<b>Name: </b><a href="#">'+response[i].name+'</a>'+
+                    '<p><b>Province: </b>'+response[i].province+'</p>'+
+                    '<p><b>Province: </b>'+response[i].division+'</p>'+
+                    '<p><b>Province: </b>'+response[i].district+'</p>'+
+                    '<p><b>Province: </b>'+response[i].tehsil+'</p>'+
+                    '<p><b>Province: </b>'+response[i].resolution+'</p>'+
+                    '<p><b>Province: </b>'+response[i].satellite+'</p>'+
+                    '<p><b>Province: </b>'+response[i].year+'</p>'+
+                    '<div class="input-field col s12">'+
+                    '<input id="" type="text" class="validate" required >'+
+                    '<label for="reqin">Reason For Sending Request</label>'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>'+
+
+                    '<a id="'+response[i].gid+'" class="detailbtn right waves-effect waves-light green btn-small modal-trigger"  style="margin-bottom:5px !important;">Request</a>'
+                    
+            $('#modaldata').html(str1);  
+        }
+    });
+
+    $(".d_modal").show();
+    
 });
 // ........... Navigation..........
 $('#division').on('change', function() {
