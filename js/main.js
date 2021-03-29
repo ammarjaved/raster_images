@@ -4,12 +4,10 @@ var divi;
 var dist;
 var teh;
 var city;
-<<<<<<< HEAD
 var layer;
 var pgeom
-=======
 var grid;
->>>>>>> 641b63bed0180f44eea3bb7d63b5a3f344be1f72
+
 
 
     // ...........sidebar Tabs..........
