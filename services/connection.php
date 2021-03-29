@@ -6,8 +6,13 @@ class Connection
     public $port        = 5432;
     public $database    = 'db_raster_spacetech';
     public $username     = 'postgres';
+<<<<<<< HEAD
     public $password = 'diamondx';
     // public $password     = '111';
+=======
+    // public $password = 'diamondx';
+    public $password     = '123';
+>>>>>>> 641b63bed0180f44eea3bb7d63b5a3f344be1f72
 
     public $conDB;
 

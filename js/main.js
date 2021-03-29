@@ -4,8 +4,12 @@ var divi;
 var dist;
 var teh;
 var city;
+<<<<<<< HEAD
 var layer;
 var pgeom
+=======
+var grid;
+>>>>>>> 641b63bed0180f44eea3bb7d63b5a3f344be1f72
 
 
     // ...........sidebar Tabs..........
@@ -183,6 +187,12 @@ $(document).ready(function(){
             layers: [3]
             });
         city.addTo(map);
+    grid=L.esri.dynamicMapLayer({
+        url: url,
+        opacity: 0.7,
+        layers: [4]
+    });
+    grid.addTo(map);
 
 
 
