@@ -16,17 +16,15 @@ class Pss extends connection
     {
 
         $output = array();
-        $gidsarr = array();
+
         $uid=$_REQUEST['uid'];
         // echo $geom;
         // exit();
 
-        $sql1="select gid from public.tbl_requests where uid = $uid;";
+        $sql1="select * from tbl_punjab_grid where gid in(select gid from tbl_requests where user_id=$uid)";
         
         $result_query = pg_query($sql1);
         if ($result_query) {
-            $gidsarr = pg_fetch_all($result_query);
-            $sql1="select * from tbl_punjab_grid where gid = $gidsarr;";
             $output = pg_fetch_all($result_query);
         }
 

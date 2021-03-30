@@ -194,33 +194,13 @@ else {
                         </div>
                         </div>
 
-                        <a href="#nextbtn" class="right waves-effect waves-light green btn-small "  style="margin-bottom:5px !important;">Next</a>
+                        <!-- <a href="#nextbtn" class="right waves-effect waves-light green btn-small "  style="margin-bottom:5px !important;">Next</a> -->
                     </div>
 
                     <div id="requests" class="col s12">
-                        <div id="normaluser">
+                        <div id="reqcontent">
                         
-                        </div> 
-                        
-                        
-
-                        <div id="admindata" style="padding-left: 0px;" class="card col s12">
-
-                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                            <div class="container" style="float:right;width:45%">
-                                <b>Name: </b><a href="#">Lahore image</a>
-                                <p><b>Description:  </b>minare pakistan image</p>
-                            </div>
-
-                            <div class="col s12">
-                            <a id="approvebtn" class="right waves-effect waves-light green btn-small" style="margin-bottom:5px !important; ">Approve</a>
-                            <a class="right waves-effect waves-light red btn-small" style="margin-bottom:5px !important; margin-right:5px !important;">Reject</a>    
-                            </div>
-
-                        </div>
-
-                        
-                                              
+                        </div>                 
                     </div>
 
                 </div>

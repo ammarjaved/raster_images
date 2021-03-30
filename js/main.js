@@ -130,15 +130,7 @@ $(document).ready(function(){
 
     // $('#detail_modal').modal();
     // $('#detail_modal').modal('open'); 
-    if(urole == 'admin'){
-        $("#admindata").show();
-        $("#normaluser").hide();
-     }
-    else
-    {
-        $("#admindata").hide();
-        $("#normaluser").show();
-    }
+  
     $('#reqbtn').click(function(){
         if($("#reqin").val() == ''){
             alertify.error("Please first fill why you want to Request");
@@ -315,57 +307,85 @@ $(document).ready(function(){
         
     });
 
-    // $(document).on('click','.reqbtn1',function(){
-    //     var gid=$(this).attr('id');
-    //     $.ajax({
-    //         url: "services/requests.php",
-    //         type: "POST",
-    //         data: 'gid='+gid +'&uid='+uid,
-    //         async: false,
-    //         success: function callback(response) {
-    //             console.log(response);
-                
-    //         }
-    //     });
-        
-    // });
-    
-    var reqstr='';
     $(document).on('click','.reqbtn',function(){
         var gid=$(this).attr('id');
         $.ajax({
-            url: "services/load_modal.php?gid=" +gid,
+            url: "services/requests.php",
+            type: "POST",
+            data: 'gid='+gid +'&uid='+uid,
+            async: false,
+            success: function callback(response) {
+                console.log(response);
+                
+            }
+        });
+        
+    });
+    
+    
+    $(document).on('click','#reqtab',function(){
+        var reqstr='';
+        $.ajax({
+            url: "services/load_req.php?uid=" +uid,
             type: "POST",
             dataType: "json",
             async: false,
             success: function callback(response) {
                 console.log(response);
-                console.log(response[0].req_status)
-                reqstr=reqstr+'<div style="padding-left: 0px;" class="card col s12">'+
+                for(var i=0;i<response.length;i++){
+                        reqstr=reqstr+'<div style="padding-left: 0px;" class="card col s12">'+
                         '<img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">'+
                         '<div class="container" style="float:right;width:45%">'+
-                        '<b>Name: </b><a href="#">'+response[0].name+'</a>'+
-                        '<p><b>Year:  </b>'+response[0].year+'</p>';
+                        '<b>Name: </b><a href="#">'+response[i].name+'</a>'+
+                        '<p><b>Year:  </b>'+response[i].year+'</p>';
 
-                        if(response[0].req_status == null){
-                            reqstr +='<p><b>Status: </b><span class=" right badge">Requested</span></p>';
-
+                        if(urole == 'admin'){
+                            reqstr +='<div class="col s12">'+
+                            '<a id="approvebtn" class="right waves-effect waves-light green btn-small" style="margin-bottom:5px !important; ">Approve</a>'+
+                            '<a class="right waves-effect waves-light red btn-small" style="margin-bottom:5px !important; margin-right:5px !important;">Reject</a>+'    
+                            '</div>';
+                         }
+                        else
+                        {
+                            if(response[i].req_status == null){
+                                reqstr +='<p><b>Status: </b><span class=" right badge">Requested</span></p>';
+    
+                            }
+                            else  if(response[i].req_status == 'approve'){
+    
+                                reqstr +='<a id="'+response[0].gid+'" class="downloadbtn right waves-effect waves-light green btn-small" style="margin-bottom:5px !important; ">Download</a>';
+                            }
                         }
-                        else  if(response[0].req_status == 'approve'){
-
-                            reqstr +='<a id="downloadbtn" class="right waves-effect waves-light green btn-small" style="margin-bottom:5px !important; ">Download</a>';
-
-                        }
+                        
                         reqstr += '</div>'+
                                 '</div>'
                         
                         
-
-                         $('#normaluser').html(reqstr); 
+                }
+                    $('#reqcontent').html(reqstr); 
             }
         });
         
     });
+
+    $(document).on('click','.downloadbtn',function(){
+        var gid=$(this).attr('id');
+        $.ajax({
+            url: "services/requests.php",
+            type: "POST",
+            data: 'gid='+gid +'&uid='+uid,
+            async: false,
+            success: function callback(response) {
+                console.log(response);
+                
+            }
+        });
+        
+    });
+
+
+    // setTimeout(function(){ $(document).click("#resulttab"); }, 3000);
+    
 
     
 // ........... Navigation..........
