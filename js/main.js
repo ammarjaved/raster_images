@@ -127,12 +127,9 @@ function addRemoveLayer(perm){
 
 
 $(document).ready(function(){
-    $(".d_modal").show();
-    $(".d_modal").modal();
-    $("#detail_modal").modal();
-    $("#detail_modal").modal('open');
-    $("#detail_modal").modal().modal('open');
 
+    // $('#detail_modal').modal();
+    // $('#detail_modal').modal('open'); 
     if(urole == 'admin'){
         $("#admindata").show();
         $("#normaluser").hide();
@@ -226,96 +223,151 @@ $(document).ready(function(){
 
     
 });
-var pageNum = 0;
+    var pageNum = 0;
 
-function nextPage() {
+    function nextPage() {
 
-    var maxnoPerPage = 4;
-    var firstpage = maxnoPerPage * pageNum;
-    var currentpage = firstpage;
-    var $articles = $($(articles), "article");
-    var i = 0;
-    while(currentpage < $articles.length && i < 4) {
-        $("#flightlisting").append($articles.eq(currentpage));
-        i++;
-        currentpage++;
+        var maxnoPerPage = 4;
+        var firstpage = maxnoPerPage * pageNum;
+        var currentpage = firstpage;
+        var $articles = $($(articles), "article");
+        var i = 0;
+        while(currentpage < $articles.length && i < 4) {
+            $("#flightlisting").append($articles.eq(currentpage));
+            i++;
+            currentpage++;
+        }
+        pageNum++;
+        if(currentpage == $articles.length)
+            $("#next").prop("disabled", true);
     }
-    pageNum++;
-    if(currentpage == $articles.length)
-        $("#next").prop("disabled", true);
-}
 
-$("button").click(function(){nextPage();});
+    $("button").click(function(){nextPage();});
 
  // polygon submit btn
 
- var str='';
- $('#psubmit_btn').on('click', function() {
-    
-    console.log(pgeom)
-    $.ajax({
-        url: "services/load_result.php?geom=" +pgeom,
-        type: "POST",
-        dataType: "json",
-        async: false,
-        success: function callback(response) {
-            console.log(response);
-            for(var i=0;i<response.length;i++){
-                console.log()
-                str=str+'<div style="padding-left: 0px;" class="card col s12">'+
-                    '<img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">'+
-                    '<div class="container" style="float:right;width:45%">'+
-                    '<b>Name: </b><a href="#">'+response[i].name+'</a>'+
-                    '<p><b>Province:  </b>'+response[i].province+'</p>'+
-                    '<a id="'+response[i].gid+'" class="detailbtn right waves-effect waves-light green btn-small modal-trigger"  style="margin-bottom:5px !important;">Details</a>'+
-                    '</div>'+
-                    '</div>'
+    var str='';
+    $('#psubmit_btn').on('click', function() {
+        
+        console.log(pgeom)
+        $.ajax({
+            url: "services/load_result.php?geom=" +pgeom,
+            type: "POST",
+            dataType: "json",
+            async: false,
+            success: function callback(response) {
+                console.log(response);
+                for(var i=0;i<response.length;i++){
+                    str=str+'<div style="padding-left: 0px;" class="card col s12">'+
+                        '<img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">'+
+                        '<div class="container" style="float:right;width:45%">'+
+                        '<b>Name: </b><a href="#">'+response[i].name+'</a>'+
+                        '<p><b>Year:  </b>'+response[i].year+'</p>'+
+                        '<a href="#detail_modal" id="'+response[i].gid+'" class="detailbtn right waves-effect waves-light green btn-small modal-trigger"  style="margin-bottom:5px !important;">Details</a>'+
+                        '</div>'+
+                        '</div>'
+                }
+                $('#resultbox').html(str);  
             }
-            $('#resultbox').html(str);  
-        }
-    });
-    instance.select('#resulttab');
-});
-
-var str1='';
- $('.detailbtn').on('click', function() {
-    var gid=$(this).attr('id');
-    console.log(pgeom)
-    $.ajax({
-        url: "services/load_modal.php?gid=" +gid,
-        type: "POST",
-        dataType: "json",
-        async: false,
-        success: function callback(response) {
-            console.log(response);
-
-                str1=str1+' <div style="padding-left: 0px;" class="card col s12">'+
-                    '<img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">'+
-                    '<div class="container" style="float:right;width:45%">'+
-                    '<b>Name: </b><a href="#">'+response[i].name+'</a>'+
-                    '<p><b>Province: </b>'+response[i].province+'</p>'+
-                    '<p><b>Province: </b>'+response[i].division+'</p>'+
-                    '<p><b>Province: </b>'+response[i].district+'</p>'+
-                    '<p><b>Province: </b>'+response[i].tehsil+'</p>'+
-                    '<p><b>Province: </b>'+response[i].resolution+'</p>'+
-                    '<p><b>Province: </b>'+response[i].satellite+'</p>'+
-                    '<p><b>Province: </b>'+response[i].year+'</p>'+
-                    '<div class="input-field col s12">'+
-                    '<input id="" type="text" class="validate" required >'+
-                    '<label for="reqin">Reason For Sending Request</label>'+
-                    '</div>'+
-                    '</div>'+
-                    '</div>'+
-
-                    '<a id="'+response[i].gid+'" class="detailbtn right waves-effect waves-light green btn-small modal-trigger"  style="margin-bottom:5px !important;">Request</a>'
-                    
-            $('#modaldata').html(str1);  
-        }
+        });
+        instance.select('#resulttab');
     });
 
-    $(".d_modal").show();
     
-});
+    $(document).on('click','.detailbtn',function(){
+        var str1='';
+        var gid=$(this).attr('id');
+        console.log(pgeom)
+        $.ajax({
+            url: "services/load_modal.php?gid=" +gid,
+            type: "POST",
+            dataType: "json",
+            async: false,
+            success: function callback(response) {
+                console.log(response);
+                    str1=str1+'<div class="modal-content">'+
+                        '<div style="padding-left: 0px;" class="card col s12">'+
+                        '<img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">'+
+                        '<div class="container" style="float:right;width:45%">'+
+                        '<b>Name: </b><a href="#">'+response[0].name+'</a>'+
+                        '<p><b>Province: </b>'+response[0].province+'</p>'+
+                        '<p><b>Province: </b>'+response[0].division+'</p>'+
+                        '<p><b>Province: </b>'+response[0].district+'</p>'+
+                        '<p><b>Province: </b>'+response[0].tehsil+'</p>'+
+                        '<p><b>Province: </b>'+response[0].resolution+'</p>'+
+                        '<p><b>Province: </b>'+response[0].satellite+'</p>'+
+                        '<p><b>Province: </b>'+response[0].year+'</p>'+
+                        '<div class="input-field col s12">'+
+                        '<input id="" type="text" class="validate" required >'+
+                        '<label for="reqin">Description for Sending Request</label>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>'+
+                        '<div class="modal-footer">'+
+                        '<a id="'+response[0].gid+'" class="reqbtn right waves-effect waves-light green btn-small" style="margin-bottom:5px !important; margin-right:5px">Request</a>'+
+                        '<a href="#!" class="right modal-close waves-effect waves-green red btn-small" style="margin-bottom:5px !important; margin-right:5px">Cancel</a>'+
+                        '</div>'
+
+                         $('#modaldata').html(str1); 
+            }
+        });
+        
+    });
+
+    // $(document).on('click','.reqbtn1',function(){
+    //     var gid=$(this).attr('id');
+    //     $.ajax({
+    //         url: "services/requests.php",
+    //         type: "POST",
+    //         data: 'gid='+gid +'&uid='+uid,
+    //         async: false,
+    //         success: function callback(response) {
+    //             console.log(response);
+                
+    //         }
+    //     });
+        
+    // });
+    
+    var reqstr='';
+    $(document).on('click','.reqbtn',function(){
+        var gid=$(this).attr('id');
+        $.ajax({
+            url: "services/load_modal.php?gid=" +gid,
+            type: "POST",
+            dataType: "json",
+            async: false,
+            success: function callback(response) {
+                console.log(response);
+                console.log(response[0].req_status)
+                reqstr=reqstr+'<div style="padding-left: 0px;" class="card col s12">'+
+                        '<img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">'+
+                        '<div class="container" style="float:right;width:45%">'+
+                        '<b>Name: </b><a href="#">'+response[0].name+'</a>'+
+                        '<p><b>Year:  </b>'+response[0].year+'</p>';
+
+                        if(response[0].req_status == null){
+                            reqstr +='<p><b>Status: </b><span class=" right badge">Requested</span></p>';
+
+                        }
+                        else  if(response[0].req_status == 'approve'){
+
+                            reqstr +='<a id="downloadbtn" class="right waves-effect waves-light green btn-small" style="margin-bottom:5px !important; ">Download</a>';
+
+                        }
+                        reqstr += '</div>'+
+                                '</div>'
+                        
+                        
+
+                         $('#normaluser').html(reqstr); 
+            }
+        });
+        
+    });
+
+    
 // ........... Navigation..........
 $('#division').on('change', function() {
     var dvname= this.value; 

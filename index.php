@@ -75,8 +75,8 @@ else {
                     <li class="tab col s3"><a href="#navi">Navigation</a></li>
                     <li class="tab col s2"><a href="#toc">TOC</a></li>
                     <li class="tab col s2"><a href="#search">Search</a></li>
-                    <li class="tab col s2"><a href="#result" id="resulttab">Reasult</a></li>
-                    <li class="tab col s3"><a href="#requests">Requests</a></li>
+                    <li id="resulttab" class="tab col s2"><a href="#result">Reasult</a></li>
+                    <li id="reqtab" class="tab col s3"><a href="#requests">Requests</a></li>
                   </ul>
                 </div>
                 <div class="tabsdata">
@@ -176,37 +176,33 @@ else {
                         
 
 
+                        <!-- Detail btn Modal Structure -->
+                        <div id="detail_modal" class="modal">
+                            <div id="modaldata">
+
+                            </div>
+                        </div>
+
                         <!-- Modal Structure -->
-                        <div id="detail_modal" class="d_modal">
-                            
-                                <div class="modal-content" >
-                                   <div id="modaldata">
-                                   
-                                   </div>
-                                       
-                                </div>
-                                <div class="modal-footer">
-                                <a id="reqbtn" class="right waves-effect waves-light green btn-small" style="margin-bottom:5px !important; margin-right:5px">Request</a> 
-                                
-                                <a href="#!" class="right modal-close waves-effect waves-green red btn-small" style="margin-bottom:5px !important; margin-right:5px">Cancel</a>
-                                </div>
-                           
+                        <div id="modal1" class="modal">
+                        <div class="modal-content">
+                            <h4>Modal Header</h4>
+                            <p>A bunch of text</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                        </div>
                         </div>
 
                         <a href="#nextbtn" class="right waves-effect waves-light green btn-small "  style="margin-bottom:5px !important;">Next</a>
                     </div>
 
                     <div id="requests" class="col s12">
+                        <div id="normaluser">
                         
-                        <div id="normaluser" style="padding-left: 0px;" class="card col s12">
-                            <img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">
-                            <div class="container" style="float:right;width:45%">
-                                <b>Name: </b><a href="#">Lahore image</a>
-                                <p><b>Description:  </b>minare pakistan image</p>
-                                <p><b>Status:  </b><span class=" right badge">Requested</span></p>
-                                
-                            </div>
-                        </div>
+                        </div> 
+                        
+                        
 
                         <div id="admindata" style="padding-left: 0px;" class="card col s12">
 
@@ -244,6 +240,7 @@ else {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
         var urole='<?php echo $_SESSION['user_role'];?>'
+        var uid='<?php echo $_SESSION['user_id'];?>'
     </script>
 <script src="js/main.js"></script>
 </body>
