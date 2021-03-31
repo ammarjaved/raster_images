@@ -316,12 +316,12 @@ $(document).ready(function(){
                                 reqstr +='<p><b class="right">Status: <span style="color:white" class="right badge red">Rejected</span></b></p>';
     
                             }
-                            else  if(response[i].req_status == 'approve'){
+                            else  if(response[i].req_status == 'approved'){
     
                                 reqstr +='<a id="'+response[0].gid+'" class="downloadbtn right waves-effect waves-light green btn-small" style="margin-bottom:5px !important; ">Download</a>';
                             }
                             else{
-                                reqstr +='<p><b class="right">Status: <span class="right badge">Requested</span></b></p>';
+                                reqstr +='<p><b class="right">Status: <span class="right badge yellow">Requested</span></b></p>';
                             }
                         }
                         
@@ -359,8 +359,8 @@ $(document).ready(function(){
                         '<p><b>Satellite: </b>'+response[0].satellite+'</p>'+
                         '<p><b>Year: </b>'+response[0].year+'</p>'+
                         // '<div class="input-field col s12">'+
-                        // '<input id="" type="text" class="validate" required >'+
-                        // '<label for="reqin">Description for Sending Request</label>'+
+                        // '<input id="reqinput" type="text" class="validate" required >'+
+                        // '<label for="reqinput">Description for Sending Request</label>'+
                         // '</div>'+
                         '</div>'+
                         '</div>'+
@@ -380,6 +380,8 @@ $(document).ready(function(){
 
     $(document).on('click','.reqbtn',function(){
         var gid=$(this).attr('id');
+        // var inpv=$('#reqinput').val();
+        // alert(inp)
         $.ajax({
             url: "services/requests.php",
             type: "POST",

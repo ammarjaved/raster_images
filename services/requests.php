@@ -21,6 +21,7 @@ class Pss extends connection
 
         $gid=$_REQUEST['gid'];
         $uid=$_REQUEST['uid'];
+        // $uinput=$_REQUEST['uinput'];
 
 
         $sql1="INSERT INTO public.tbl_requests(user_id, gid) VALUES ($uid, $gid);";

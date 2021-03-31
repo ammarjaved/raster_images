@@ -19,6 +19,10 @@ class Pss extends connection
 
         $urole=$_REQUEST['urole'];
         $uid=$_REQUEST['uid'];
+        // $urole="normal";
+        // $uid=4;
+
+
 
 
         if ($urole == "admin") {
