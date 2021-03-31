@@ -136,9 +136,15 @@ function addRemoveLayer(perm){
 
 
 $(document).ready(function(){
-
+    
     // $('#detail_modal').modal();
     // $('#detail_modal').modal('open'); 
+
+    // setTimeout(function(){ 
+    //     $('#resulttab a')[0].click();
+
+
+    // }, 2000);
   
     $('#reqbtn').click(function(){
         if($("#reqin").val() == ''){
@@ -251,9 +257,9 @@ $(document).ready(function(){
 
  // polygon submit btn
 
-    var str='';
+    
     $('#psubmit_btn').on('click', function() {
-        
+        var str='';
         console.log(pgeom)
         $.ajax({
             url: "services/load_result.php?geom=" +pgeom,
@@ -273,6 +279,7 @@ $(document).ready(function(){
                         '</div>'
                 }
                 $('#resultbox').html(str);  
+                $('#resulttab a')[0].click();
             }
         });
         instance.select('#resulttab');
@@ -380,7 +387,7 @@ $(document).ready(function(){
             async: false,
             success: function callback(response) {
                 alert(response)
-                console.log(response);
+                
                 
             }
         });
@@ -432,7 +439,7 @@ $(document).ready(function(){
     });
 
 
-    // setTimeout(function(){ $(document).click("#resulttab"); }, 3000);
+    
     
 
     
