@@ -299,14 +299,14 @@ $(document).ready(function(){
                         if(urole == 'admin'){
                             
                             reqstr +='<a id="'+response[0].gid+'" class="approvbtn collection-item"><span style="color:white" class="badge green">Approve</span></a>'+
-                            '<a href="#detail_modal" id="'+response[0].gid+'" class="detailbtn modal-trigger"><span style="color:white" class="badge green">Detail</span></a>'+
+                            '<a href="#detail_modal" id="'+response[0].gid+'" class="detailbtn modal-trigger"><span style="color:green" class="badge yellow">Detail</span></a>'+
                             '<a id="'+response[0].gid+'" class="rejectbtn collection-item"><span style="color:white" class="badge red">Reject</span></a>';
 
                          }
                         else
                         {
                             if(response[i].req_status == 'rejected'){
-                                reqstr +='<p><b class="right">Status: <span class="right badge red">Rejected</span></b></p>';
+                                reqstr +='<p><b class="right">Status: <span style="color:white" class="right badge red">Rejected</span></b></p>';
     
                             }
                             else  if(response[i].req_status == 'approve'){

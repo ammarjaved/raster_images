@@ -20,10 +20,9 @@ class Pss extends connection
         $urole=$_REQUEST['urole'];
         $uid=$_REQUEST['uid'];
 
-        $urole="admin";
-        $uid=2;
+
         if ($urole == "admin") {
-            $sql1="select * from tbl_punjab_grid where gid in(select gid from tbl_requests)";
+            $sql1="select * from tbl_punjab_grid where gid in(select gid from tbl_requests) and req_status IS NULL;";
         }
         else{
             $sql1="select * from tbl_punjab_grid where gid in(select gid from tbl_requests where user_id=$uid)";

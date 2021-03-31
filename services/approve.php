@@ -22,7 +22,7 @@ class Pss extends connection
         $gid=$_REQUEST['gid'];
         
 
-        $sql1="UPDATE public.tbl_punjab_grid SET req_status='approve' WHERE gid=$gid;";
+        $sql1="UPDATE public.tbl_punjab_grid SET req_status='approved' WHERE gid=$gid;";
         
         
         $result_query = pg_query($sql1);
