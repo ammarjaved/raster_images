@@ -17,12 +17,18 @@ class Pss extends connection
 
         $output = array();
 
+        $urole=$_REQUEST['urole'];
         $uid=$_REQUEST['uid'];
-        // echo $geom;
-        // exit();
 
-        $sql1="select * from tbl_punjab_grid where gid in(select gid from tbl_requests where user_id=$uid)";
-        
+        $urole="admin";
+        $uid=2;
+        if ($urole == "admin") {
+            $sql1="select * from tbl_punjab_grid where gid in(select gid from tbl_requests)";
+        }
+        else{
+            $sql1="select * from tbl_punjab_grid where gid in(select gid from tbl_requests where user_id=$uid)";
+        }
+       
         $result_query = pg_query($sql1);
         if ($result_query) {
             $output = pg_fetch_all($result_query);

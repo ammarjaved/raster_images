@@ -110,13 +110,22 @@ function addRemoveLayer(perm){
         }
     }
 
-     if(perm=='city'){
+    if(perm=='city'){
         var ckb = $("#city").is(':checked');
         if(ckb==true){
            
             map.addLayer(city)
         }else{
              map.removeLayer(city)
+        }
+    }
+    if(perm=='grid'){
+        var ckb = $("#grid").is(':checked');
+        if(ckb==true){
+           
+            map.addLayer(grid)
+        }else{
+             map.removeLayer(grid)
         }
     }
 
@@ -161,30 +170,34 @@ $(document).ready(function(){
                 layers: [0]
                 });
         divi.addTo(map);
+
         dist=L.esri.dynamicMapLayer({
             url: url,
             opacity: 0.7,
             layers: [1]
             });
         dist.addTo(map);
+
         teh=L.esri.dynamicMapLayer({
                 url: url,
                 opacity: 0.7,
                 layers: [2]
                 });
         teh.addTo(map);
+
         city=L.esri.dynamicMapLayer({
             url: url,
             opacity: 0.7,
             layers: [3]
             });
         city.addTo(map);
-    grid=L.esri.dynamicMapLayer({
-        url: url,
-        opacity: 0.7,
-        layers: [4]
-    });
-    grid.addTo(map);
+
+        grid=L.esri.dynamicMapLayer({
+            url: url,
+            opacity: 0.7,
+            layers: [4]
+        });
+        grid.addTo(map);
 
 
 
@@ -251,7 +264,7 @@ $(document).ready(function(){
                 console.log(response);
                 for(var i=0;i<response.length;i++){
                     str=str+'<div style="padding-left: 0px;" class="card col s12">'+
-                        '<img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">'+
+                        '<img src="images/test1.jpg" alt="test1" style="float:left;width:45%">'+
                         '<div class="container" style="float:right;width:45%">'+
                         '<b>Name: </b><a href="#">'+response[i].name+'</a>'+
                         '<p><b>Year:  </b>'+response[i].year+'</p>'+
@@ -265,11 +278,60 @@ $(document).ready(function(){
         instance.select('#resulttab');
     });
 
+    $(document).on('click','#reqtab',function(){
+        var reqstr='';
+        $.ajax({
+            url: "services/load_req.php",
+            type: "POST",
+            dataType: "json",
+            data: { 'urole': urole, 'uid': uid },
+            success: function callback(response) {
+                console.log(response);
+                for(var i=0;i<response.length;i++){
+                        reqstr=reqstr+'<div style="padding-left: 0px;" class="card col s12">'+
+                        '<img src="images/test1.jpg" alt="test1" style="float:left;width:45%">'+
+                        '<div class="container" style="float:right;width:45%">'+
+                        '<b>Name: </b><a href="#">'+response[i].name+'</a>'+
+                        '<p><b>Year:  </b>'+response[i].year+'</p>'+
+                        '</div>'+
+                        '<div class="col s12">';
+
+                        if(urole == 'admin'){
+                            
+                            reqstr +='<a id="'+response[0].gid+'" class="approvbtn collection-item"><span style="color:white" class="badge green">Approve</span></a>'+
+                            '<a href="#detail_modal" id="'+response[0].gid+'" class="detailbtn modal-trigger"><span style="color:white" class="badge green">Detail</span></a>'+
+                            '<a id="'+response[0].gid+'" class="rejectbtn collection-item"><span style="color:white" class="badge red">Reject</span></a>';
+
+                         }
+                        else
+                        {
+                            if(response[i].req_status == 'rejected'){
+                                reqstr +='<p><b class="right">Status: <span class="right badge red">Rejected</span></b></p>';
+    
+                            }
+                            else  if(response[i].req_status == 'approve'){
+    
+                                reqstr +='<a id="'+response[0].gid+'" class="downloadbtn right waves-effect waves-light green btn-small" style="margin-bottom:5px !important; ">Download</a>';
+                            }
+                            else{
+                                reqstr +='<p><b class="right">Status: <span class="right badge">Requested</span></b></p>';
+                            }
+                        }
+                        
+                        reqstr += '</div>'+
+                                '</div>';
+                        
+                        
+                }
+                    $('#reqcontent').html(reqstr); 
+            }
+        });
+        
+    });
     
     $(document).on('click','.detailbtn',function(){
         var str1='';
         var gid=$(this).attr('id');
-        console.log(pgeom)
         $.ajax({
             url: "services/load_modal.php?gid=" +gid,
             type: "POST",
@@ -279,28 +341,30 @@ $(document).ready(function(){
                 console.log(response);
                     str1=str1+'<div class="modal-content">'+
                         '<div style="padding-left: 0px;" class="card col s12">'+
-                        '<img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">'+
+                        '<img src="images/test1.jpg" alt="test1" style="float:left;width:45%">'+
                         '<div class="container" style="float:right;width:45%">'+
                         '<b>Name: </b><a href="#">'+response[0].name+'</a>'+
                         '<p><b>Province: </b>'+response[0].province+'</p>'+
-                        '<p><b>Province: </b>'+response[0].division+'</p>'+
-                        '<p><b>Province: </b>'+response[0].district+'</p>'+
-                        '<p><b>Province: </b>'+response[0].tehsil+'</p>'+
-                        '<p><b>Province: </b>'+response[0].resolution+'</p>'+
-                        '<p><b>Province: </b>'+response[0].satellite+'</p>'+
-                        '<p><b>Province: </b>'+response[0].year+'</p>'+
-                        '<div class="input-field col s12">'+
-                        '<input id="" type="text" class="validate" required >'+
-                        '<label for="reqin">Description for Sending Request</label>'+
+                        '<p><b>Dvision: </b>'+response[0].division+'</p>'+
+                        '<p><b>District: </b>'+response[0].district+'</p>'+
+                        '<p><b>Tehsil: </b>'+response[0].tehsil+'</p>'+
+                        '<p><b>Resolution: </b>'+response[0].resolution+'</p>'+
+                        '<p><b>Satellite: </b>'+response[0].satellite+'</p>'+
+                        '<p><b>Year: </b>'+response[0].year+'</p>'+
+                        // '<div class="input-field col s12">'+
+                        // '<input id="" type="text" class="validate" required >'+
+                        // '<label for="reqin">Description for Sending Request</label>'+
+                        // '</div>'+
                         '</div>'+
                         '</div>'+
                         '</div>'+
-                        '</div>'+
-                        '<div class="modal-footer">'+
-                        '<a id="'+response[0].gid+'" class="reqbtn right waves-effect waves-light green btn-small" style="margin-bottom:5px !important; margin-right:5px">Request</a>'+
-                        '<a href="#!" class="right modal-close waves-effect waves-green red btn-small" style="margin-bottom:5px !important; margin-right:5px">Cancel</a>'+
-                        '</div>'
-
+                        '<div class="modal-footer">';
+                        if(urole !== 'admin'){
+                            str1 +='<a id="'+response[0].gid+'" class="reqbtn right waves-effect waves-light green btn-small" style="margin-bottom:5px !important; margin-right:5px">Request</a>';
+                        }
+                        str1 +='<a href="#!" class="right modal-close waves-effect waves-green red btn-small" style="margin-bottom:5px !important; margin-right:5px">Cancel</a>'+
+                        '</div>';
+                        
                          $('#modaldata').html(str1); 
             }
         });
@@ -312,9 +376,10 @@ $(document).ready(function(){
         $.ajax({
             url: "services/requests.php",
             type: "POST",
-            data: 'gid='+gid +'&uid='+uid,
+            data: { 'gid': gid, 'uid': uid },
             async: false,
             success: function callback(response) {
+                alert(response)
                 console.log(response);
                 
             }
@@ -323,64 +388,47 @@ $(document).ready(function(){
     });
     
     
-    $(document).on('click','#reqtab',function(){
-        var reqstr='';
+  
+
+    $(document).on('click','.approvbtn',function(){
+        var gid=$(this).attr('id');
         $.ajax({
-            url: "services/load_req.php?uid=" +uid,
+            url: "services/approve.php?gid="+gid,
             type: "POST",
             dataType: "json",
             async: false,
             success: function callback(response) {
+                alert(response)
                 console.log(response);
-                for(var i=0;i<response.length;i++){
-                        reqstr=reqstr+'<div style="padding-left: 0px;" class="card col s12">'+
-                        '<img src="images/lhr.jpg" alt="lhr" style="float:left;width:45%">'+
-                        '<div class="container" style="float:right;width:45%">'+
-                        '<b>Name: </b><a href="#">'+response[i].name+'</a>'+
-                        '<p><b>Year:  </b>'+response[i].year+'</p>';
-
-                        if(urole == 'admin'){
-                            reqstr +='<div class="col s12">'+
-                            '<a id="approvebtn" class="right waves-effect waves-light green btn-small" style="margin-bottom:5px !important; ">Approve</a>'+
-                            '<a class="right waves-effect waves-light red btn-small" style="margin-bottom:5px !important; margin-right:5px !important;">Reject</a>+'    
-                            '</div>';
-                         }
-                        else
-                        {
-                            if(response[i].req_status == null){
-                                reqstr +='<p><b>Status: </b><span class=" right badge">Requested</span></p>';
-    
-                            }
-                            else  if(response[i].req_status == 'approve'){
-    
-                                reqstr +='<a id="'+response[0].gid+'" class="downloadbtn right waves-effect waves-light green btn-small" style="margin-bottom:5px !important; ">Download</a>';
-                            }
-                        }
-                        
-                        reqstr += '</div>'+
-                                '</div>'
-                        
-                        
-                }
-                    $('#reqcontent').html(reqstr); 
+                
             }
         });
-        
     });
-
+    $(document).on('click','.rejectbtn',function(){
+        var gid=$(this).attr('id');
+        $.ajax({
+            url: "services/rejected.php?gid="+gid,
+            type: "POST",
+            dataType: "json",
+            async: false,
+            success: function callback(response) {
+                alert(response)
+                console.log(response);
+                
+            }
+        });
+    });
     $(document).on('click','.downloadbtn',function(){
         var gid=$(this).attr('id');
         $.ajax({
             url: "services/requests.php",
             type: "POST",
-            data: 'gid='+gid +'&uid='+uid,
-            async: false,
+            data: { 'gid': gid, 'uid': uid },
             success: function callback(response) {
                 console.log(response);
                 
             }
         });
-        
     });
 
 

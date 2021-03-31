@@ -20,15 +20,14 @@ class Pss extends connection
         $output = array();
 
         $gid=$_REQUEST['gid'];
-        $uid=$_REQUEST['uid'];
+        
 
-
-        $sql1="INSERT INTO public.tbl_requests(user_id, gid) VALUES ($uid, $gid);";
-
+        $sql1="UPDATE public.tbl_punjab_grid SET req_status='rejected' WHERE gid=$gid;";
+        
         
         $result_query = pg_query($sql1);
         if ($result_query) {
-            $output = "Requested successfully";
+            $output = "rejected successfully";
         }
 
 

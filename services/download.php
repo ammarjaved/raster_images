@@ -21,14 +21,14 @@ class Pss extends connection
 
         $gid=$_REQUEST['gid'];
         $uid=$_REQUEST['uid'];
-
+        
 
         $sql1="INSERT INTO public.tbl_requests(user_id, gid) VALUES ($uid, $gid);";
 
         
         $result_query = pg_query($sql1);
         if ($result_query) {
-            $output = "Requested successfully";
+            $output = "inserted successfully";
         }
 
 

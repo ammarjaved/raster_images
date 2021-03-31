@@ -56,8 +56,8 @@ else {
         <div class="nav-wrapper">
             
                 <a href="#"><img style="margin-top: 10px; margin-left: 30px !important;" src="images/logot.png" height="50px" width="250px"></a>
-                <a href="#" class="brand-logo center">Raster Dashboard</a>
-                <a href="services/logout.php" class="right" style="margin-right: 30px !important;">Logout</a>
+                <a href="#" class="brand-logo center" style="color: #ffc128c7;">RASTER DASHBOARD </a>
+                <a href="services/logout.php" class="right" style="color: #FFC128; margin-right: 30px !important;">Logout</a>
            
         </div>
     </nav>
@@ -108,6 +108,12 @@ else {
                                 <span>City</span>
                             </label>
                             </p>
+                            <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" checked="checked" onclick="addRemoveLayer('grid')" id="grid" />
+                                <span>Punjab Grid</span>
+                            </label>
+                            </p>
                         </form>
                     </div>
 
@@ -150,7 +156,7 @@ else {
                             <a id="psubmit_btn" class="waves-effect waves-light btn-small green"><i class="material-icons left">send</i>Submit</a>
                             </p>
                             <br>
-                            <div class="file-field input-field">
+                            <!-- <div class="file-field input-field">
                                 <div class="btn-small green">
                                 <i class="material-icons left">drive_folder_upload</i>
                                     <span>Upload File</span>
@@ -159,7 +165,7 @@ else {
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text" placeholder="Upload Shape file" >
                                 </div>
-                            </div>
+                            </div> -->
 
                             
 
@@ -176,12 +182,7 @@ else {
                         
 
 
-                        <!-- Detail btn Modal Structure -->
-                        <div id="detail_modal" class="modal">
-                            <div id="modaldata">
-
-                            </div>
-                        </div>
+                       
 
                         <!-- Modal Structure -->
                         <div id="modal1" class="modal">
@@ -202,6 +203,13 @@ else {
                         
                         </div>                 
                     </div>
+
+                     <!-- Detail btn Modal Structure -->
+                     <div id="detail_modal" class="modal">
+                            <div id="modaldata">
+
+                            </div>
+                        </div>
 
                 </div>
                 
