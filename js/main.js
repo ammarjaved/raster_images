@@ -298,9 +298,14 @@ $(document).ready(function(){
                         reqstr=reqstr+'<div style="padding-left: 0px;" class="card col s12">'+
                         '<img src="images/test1.jpg" alt="test1" style="float:left;width:45%">'+
                         '<div class="container" style="float:right;width:45%">'+
-                        '<b>Name: </b><a href="#">'+response[i].name+'</a>'+
-                        '<p><b>Year:  </b>'+response[i].year+'</p>'+
-                        '</div>'+
+                        '<b>Name: </b><a href="#">'+response[i].name+'</a>';
+                        if(urole == 'admin'){
+                            reqstr +='<p><b>Requested By: </b>'+response[i].user_name+'</p>';
+                        }
+                        else{
+                            reqstr +='<p><b>Year:  </b>'+response[i].year+'</p>';
+                        }
+                        reqstr +='</div>'+
                         '<div class="col s12">';
 
                         if(urole == 'admin'){
@@ -335,8 +340,7 @@ $(document).ready(function(){
         });
         
     });
-    
-    $(document).on('click','.detailbtn',function(){
+   $(document).on('click','.detailbtn',function(){
         var str1='';
         var gid=$(this).attr('id');
         $.ajax({
@@ -376,7 +380,8 @@ $(document).ready(function(){
             }
         });
         
-    });
+    }); 
+
 
     $(document).on('click','.reqbtn',function(){
         var gid=$(this).attr('id');

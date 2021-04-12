@@ -22,11 +22,14 @@ class Pss extends connection
         // $urole="normal";
         // $uid=4;
 
-
-
-
+       
         if ($urole == "admin") {
-            $sql1="select * from tbl_punjab_grid where gid in(select gid from tbl_requests) and req_status IS NULL;";
+            $sql1="SELECT *, tbl_users.user_name
+            FROM tbl_punjab_grid
+            JOIN tbl_requests
+                ON tbl_punjab_grid.gid = tbl_requests.gid
+            JOIN tbl_users
+            ON tbl_users.id = tbl_requests.user_id where tbl_punjab_grid.gid in(select gid from tbl_requests) and req_status IS NULL;";
         }
         else{
             $sql1="select * from tbl_punjab_grid where gid in(select gid from tbl_requests where user_id=$uid)";
